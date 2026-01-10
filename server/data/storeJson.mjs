@@ -3,7 +3,7 @@ import path from "path";
 
 // this reads server/data/info.json
 const cwd = process.cwd();
-const DATA_PATH = cwd.endsWith("/server") ? path.join(cwd, "data", "info.json") : path.join(cwd, "server", "data", "info.json");
+const DATA_PATH = cwd.endsWith("/server") ? path.join(cwd, "data", "info.json") : path.join(cwd, "data", "info.json");
 
 export async function readInfoJson() {
   const raw = await fs.readFile(DATA_PATH, "utf-8");

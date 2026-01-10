@@ -10,7 +10,7 @@ const items = [
     { type: 'park', imgPath: Park },
 ];
 
-function Palette() {
+function Palette({ counts = {} }) {
     const handleDragStart = (e, item) => {
         const payload = { ...item, originId: null };
         e.dataTransfer.setData('application/json', JSON.stringify(payload));
@@ -21,12 +21,16 @@ function Palette() {
         <aside class="palette" id="palette">
             <h3>Drag and Drop the icons</h3>
             <div className="palette-items">
-                {items.map((it) => (
-                    <div key={it.type} className="palette-item" draggable onDragStart={(e) => handleDragStart(e, it)}>
-                        <img src={it.imgPath} alt={it.type} width={40} />
-                        <div className="palette-label">{it.type}</div>
-                    </div>
-                ))}
+                {items.map((it) => {
+                    const available = counts[it.type] ?? 0;
+                    const disabled = available <= 0;
+                    return (
+                        <div key={it.type} className={`palette-item ${disabled ? 'disabled' : ''}`} draggable={!disabled} onDragStart={(e) => !disabled && handleDragStart(e, it)}>
+                            <img src={it.imgPath} alt={it.type} width={40} />
+                            <div className="palette-label">{it.type} <span className="palette-count">{available}</span></div>
+                        </div>
+                    );
+                })}
             </div>
         </aside>
     );
