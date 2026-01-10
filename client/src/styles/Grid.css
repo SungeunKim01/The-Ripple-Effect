@@ -4,6 +4,7 @@
     "tiles stats"
     "tiles palette"
     "tiles palette";
+    padding: 2rem;
 }
 
 .tiles{
@@ -11,10 +12,12 @@
     display: grid;
     background-color: #BAD494;
     padding: 1rem;
-    border-radius: 6px;
-    gap: 0.5rem;
+    border-radius: 10px;
+    gap: 0.75rem;
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: repeat(6, 1fr);
+    aspect-ratio: 1/1;
+    width: fit-content;
 }
 
 .palette{
@@ -23,14 +26,21 @@
 
 .stats-container{
     grid-area: stats;
-    background-color: rgba(255, 0, 0, .3);
 }
 
 #palette {
-    width: 140px;
-    background: #f3f3f3;
-    padding: 12px;
-    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    backdrop-filter: blur(5px);
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    height: fit-content;
+    justify-self: center;
 }
 
 .palette-item {
@@ -44,12 +54,19 @@
     cursor: grab;
 }
 
+.palette-item img{
+    border: 1px dashed #94886B;
+    border-radius: 5px;
+    width: 18%;
+}
+
 .tile {
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 0.25rem;
     background-color: #F1E7D3;
+    aspect-ratio: 1/1;
 }
 
 .tile.drag-over {

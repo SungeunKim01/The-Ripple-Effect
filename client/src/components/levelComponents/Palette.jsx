@@ -19,7 +19,7 @@ function Palette() {
 
     return (
         <aside class="palette" id="palette">
-            <h3>Palette</h3>
+            <h3>Drag and Drop the icons</h3>
             <div className="palette-items">
                 {items.map((it) => (
                     <div key={it.type} className="palette-item" draggable onDragStart={(e) => handleDragStart(e, it)}>
