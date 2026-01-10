@@ -18,7 +18,7 @@ function Palette({ counts = {} }) {
     };
 
     return (
-        <aside class="palette" id="palette">
+        <aside className="palette" id="palette">
             <h3>Drag and Drop the icons</h3>
             <div className="palette-items">
                 {items.map((it) => {
