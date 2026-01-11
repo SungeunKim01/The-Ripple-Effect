@@ -14,7 +14,7 @@ import Skyscraper from '../../assets/images/skyscraper.png';
 import Golf from '../../assets/images/golf.png';
 import Garden from '../../assets/images/garden.png';
 import Jet from '../../assets/images/jet.png';
-import '../../styles/grid.css';
+import '../../styles/Grid.css';
 import StatsBar from './StatsBar.jsx';
 
 

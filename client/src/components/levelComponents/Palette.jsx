@@ -11,7 +11,7 @@ import SkyScraper from '../../assets/images/skyscraper.png';
 import Golf from '../../assets/images/golf.png';
 import Jet from '../../assets/images/jet.png';
 import Garden from '../../assets/images/garden.png';
-import '../../styles/grid.css';
+import '../../styles/Grid.css';
 
 const items = [
     { type: 'house', imgPath: House, label: 'House' },
