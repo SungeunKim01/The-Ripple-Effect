@@ -8,12 +8,12 @@ import NuclearPowerPlant from '../../assets/images/nuclear-power-plant.png';
 import '../../styles/grid.css';
 
 const items = [
-    { type: 'house', imgPath: House },
-    { type: 'school', imgPath: School },
-    { type: 'park', imgPath: Park },
-    { type: 'factory', imgPath: Factory },
-    { type: 'wind turbine', imgPath: WindTurbine },
-    { type: 'nuclear power plant', imgPath: NuclearPowerPlant },
+    { type: 'house', imgPath: House, label: 'House' },
+    { type: 'school', imgPath: School, label: 'School' },
+    { type: 'park', imgPath: Park, label: 'Park' },
+    { type: 'factory', imgPath: Factory, label: 'Factory' },
+    { type: 'windmill', imgPath: WindTurbine, label: 'Windmill' },
+    { type: 'powerplant', imgPath: NuclearPowerPlant, label: 'Power Plant' },
 ];
 
 function Palette({ counts = {} }) {
@@ -33,7 +33,7 @@ function Palette({ counts = {} }) {
                     return (
                         <div key={it.type} className={`palette-item ${disabled ? 'disabled' : ''}`} draggable={!disabled} onDragStart={(e) => !disabled && handleDragStart(e, it)}>
                             <img src={it.imgPath} alt={it.type} width={40} />
-                            <div className="palette-label">{it.type} <span className="palette-count">{available}</span></div>
+                            <div className="palette-label">{it.label ?? it.type} <span className="palette-count">{available}</span></div>
                         </div>
                     );
                 })}
