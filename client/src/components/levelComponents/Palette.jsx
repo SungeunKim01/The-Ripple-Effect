@@ -2,12 +2,14 @@ import React from 'react';
 import House from '../../assets/images/house.png';
 import Park from '../../assets/images/park.png';
 import School from '../../assets/images/school.png';
+import Factory from '../../assets/images/factory.png';
 import '../../styles/grid.css';
 
 const items = [
     { type: 'house', imgPath: House },
     { type: 'school', imgPath: School },
     { type: 'park', imgPath: Park },
+    { type: 'factory', imgPath: Factory },
 ];
 
 function Palette({ counts = {} }) {
