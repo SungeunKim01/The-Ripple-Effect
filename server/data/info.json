@@ -1,7 +1,7 @@
 {"levels" : [
         {
             "levelNumber": 1,
-            "gridSize": [2,2],
+            "gridSize": [6,6],
             "tiles": [
                 {"name" : "house-1", "img": "/client/src/assets/images/house.png", "postion": [2,3], "tileColour": "green", "effect": {"environment": 0, "happiness": 0}},
                 {"name" : "house-2", "img": "/client/src/assets/images/house.png", "postion": [3,2], "tileColour": "green", "effect": {"environment": 0, "happiness": 0}},
@@ -9,6 +9,25 @@
                 {"name" : "school-1", "img": "/client/src/assets/images/school.png", "postion": [-1,-1], "tileColour": "green", "effect": {"environment": -5, "happiness": 5}},
                 {"name" : "park-1", "img": "/client/src/assets/images/park.png", "postion": [-1,-1], "tileColour": "green", "effect": {"environment": 20, "happiness": 10}},
                 {"name" : "park-2", "img": "/client/src/assets/images/park.png", "postion": [-1,-1], "tileColour": "green", "effect": {"environment": 20, "happiness": 10}}
+            ],
+            "solutions": [
+                {"id" : "school-1", "position": [1,2]},
+                {"id" : "park-1", "position": [2,1]}
+            ]
+        },
+        {
+            "levelNumber": 2,
+            "gridSize": [6,6],
+            "tiles": [
+                {"name" : "house-1", "img": "/client/src/assets/images/house.png", "postion": [2,3], "tileColour": "green", "effect": {"environment": 0, "happiness": 0}},
+                {"name" : "house-2", "img": "/client/src/assets/images/house.png", "postion": [3,2], "tileColour": "green", "effect": {"environment": 0, "happiness": 0}},
+                {"name" : "house-3", "img": "/client/src/assets/images/house.png", "postion": [3,4], "tileColour": "green", "effect": {"environment": 0, "happiness": 0}},
+                {"name" : "house-4", "img": "/client/src/assets/images/house.png", "postion": [3,4], "tileColour": "green", "effect": {"environment": 0, "happiness": 0}},
+                {"name" : "school-1", "img": "/client/src/assets/images/school.png", "postion": [-1,-1], "tileColour": "green", "effect": {"environment": -5, "happiness": 5}},
+                {"name" : "park-1", "img": "/client/src/assets/images/park.png", "postion": [-1,-1], "tileColour": "green", "effect": {"environment": 20, "happiness": 10}},
+                {"name" : "park-2", "img": "/client/src/assets/images/park.png", "postion": [-1,-1], "tileColour": "green", "effect": {"environment": 20, "happiness": 10}},
+                {"name" : "factor-1", "img": "/client/src/assets/images/park.png", "postion": [-1,-1], "tileColour": "green", "effect": {"environment": -10, "happiness": -5}},
+                {"name" : "factor-2", "img": "/client/src/assets/images/park.png", "postion": [-1,-1], "tileColour": "green", "effect": {"environment": -10, "happiness": -5}}
             ],
             "solutions": [
                 {"id" : "school-1", "position": [1,2]},
