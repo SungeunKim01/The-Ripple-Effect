@@ -19,7 +19,7 @@ import StatsBar from './StatsBar.jsx';
 
 
 
-function Grid({levelInfo, setCurrentPage}) {
+function Grid({ levelInfo, onLevelCompleteChange }) {
     const GRID_SIZE = 6; // grid is always 6x6 per requirements
     const rows = GRID_SIZE;
     const cols = GRID_SIZE;
@@ -261,6 +261,14 @@ function Grid({levelInfo, setCurrentPage}) {
         // require Environment and Happiness >= 75 (economy not required for completion)
         setLevelComplete(allPlaced && stats.environment >= 75 && stats.happiness >= 75 && stats.economy >= 75);
     }, [stats.environment, stats.happiness, stats.economy, counts]);
+    
+    // tell LevelComponent so it can show the Next Level button
+    useEffect(() => {
+        if (typeof onLevelCompleteChange === 'function') {
+            onLevelCompleteChange(levelComplete);
+        }
+    }, [levelComplete, onLevelCompleteChange]);
+    
     // When a level becomes complete, mark it in the `game_progress` cookie (completed mapping only) and also persist saved state to localStorage
     React.useEffect(() => {
         if (!levelComplete) return;
@@ -489,7 +497,7 @@ function Grid({levelInfo, setCurrentPage}) {
     };
 
     return ( 
-        <>
+        
             <section className='grid-section'>
                 <div className="tiles" id='tiles' onDragOver={handleDragOver} onDrop={handleDrop} onDragEnter={handleDragEnter} onDragLeave={handleDragLeave} onClick={handleClick} >
                     {tiles.map((tile) => (
@@ -502,26 +510,18 @@ function Grid({levelInfo, setCurrentPage}) {
                         <StatsBar happiness={stats.happiness} environment={stats.environment} />
                     }
 
-                    {levelInfo.id > 1 && 
-                        <StatsBar happiness={stats.happiness} environment={stats.environment} economy={stats.economy} />
-                    }
-                </div>
-            </section>
-            {levelComplete && (
-                <div className="level-complete">
-                    <div className="level-complete-card">
-                        <h1>Level Complete!</h1>
-                        <p>You've successfully balanced the needs of the community and the planet.</p>
-                        <button 
-                            className="next-level-btn"
-                            onClick={() => { setCurrentPage(`level-${levelInfo.id + 1}`) }}
-                        >
-                            Next Level
-                        </button>
+                {levelInfo.id > 1 && 
+                    <StatsBar happiness={stats.happiness} environment={stats.environment} economy={stats.economy} />
+                }
+                {levelComplete && (
+                    <div className="level-complete">
+                        {levelInfo?.id === 1
+                            ? "✅ Level Complete! Environment, Happiness ≥ 75"
+                            : "✅ Level Complete! Environment, Happiness, Economy ≥ 75"}
                     </div>
-                </div>
-            )}
-        </>
+                )}
+            </div>
+        </section>
     );
 }
 

@@ -2,9 +2,13 @@ import Grid from "./levelComponents/Grid";
 import '../styles/LevelComponent.css'
 import { useEffect, useState } from "react";
 
+import nextLevelIcon from "../assets/icons/nextLevel.png";
+
+
 function LevelComponent({ level, setCurrentPage }) {
 	const [levelInfo, setLevelInfo] = useState(null);
     const [showInfo, setShowInfo] = useState(true);
+	const [levelCompleted, setLevelCompleted] = useState(false);
 
 	useEffect(() => {
 		async function fetchLevel() {
@@ -23,13 +27,28 @@ function LevelComponent({ level, setCurrentPage }) {
 		setShowInfo(false);
 	}
 
+	function goToNextLevel() {
+		const next = Number(level) + 1;
+		setCurrentPage(`level-${next}`);
+	}
+
+	const MAX_LEVEL = 5;
+	const hasNextLevel = Number(level) < MAX_LEVEL;
+
 	return (
 		<div className="level-component">
 			<button className="back-arrow" onClick={() => setCurrentPage("level-selection")}>
                 <span>&#11013;</span> <span>Back to levels</span>
             </button>
 			<h1>Level {level}</h1>
-			{levelInfo && <Grid levelInfo={levelInfo} setCurrentPage={setCurrentPage}/>}
+			{levelInfo && (<Grid levelInfo={levelInfo} onLevelCompleteChange={setLevelCompleted}/>)}
+
+			{/* nxt level button */}
+			{levelCompleted && hasNextLevel && (
+				<button className="next-level-btn" onClick={goToNextLevel}>
+					<img src={nextLevelIcon} alt="Next Level" />
+				</button>
+			)}
 
 			{level == "1" && showInfo &&(
 				<div className="modal-overlay">
