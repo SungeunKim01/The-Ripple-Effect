@@ -497,17 +497,18 @@ function Grid({ levelInfo, onLevelCompleteChange }) {
     };
 
     return ( 
-        <section className='grid-section'>
-            <div className="tiles" id='tiles' onDragOver={handleDragOver} onDrop={handleDrop} onDragEnter={handleDragEnter} onDragLeave={handleDragLeave} onClick={handleClick} >
-                {tiles.map((tile) => (
-                    <Tile key={tile.id} id={tile.id} type={tile.type} imgPath={tile.imgPath} fixed={tile.fixed} highlighted={highlightedIds.includes(tile.id) ? highlightType : false} />
-                ))}
-            </div>
-            <Palette counts={counts} />
-            <div className="stats-container">
-                {levelInfo.id == 1 && 
-                    <StatsBar happiness={stats.happiness} environment={stats.environment} />
-                }
+        
+            <section className='grid-section'>
+                <div className="tiles" id='tiles' onDragOver={handleDragOver} onDrop={handleDrop} onDragEnter={handleDragEnter} onDragLeave={handleDragLeave} onClick={handleClick} >
+                    {tiles.map((tile) => (
+                        <Tile key={tile.id} id={tile.id} type={tile.type} imgPath={tile.imgPath} fixed={tile.fixed} highlighted={highlightedIds.includes(tile.id) ? highlightType : false} />
+                    ))}
+                </div>
+                <Palette counts={counts} />
+                <div className="stats-container">
+                    {levelInfo.id == 1 && 
+                        <StatsBar happiness={stats.happiness} environment={stats.environment} />
+                    }
 
                 {levelInfo.id > 1 && 
                     <StatsBar happiness={stats.happiness} environment={stats.environment} economy={stats.economy} />
