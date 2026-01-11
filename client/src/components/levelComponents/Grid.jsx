@@ -4,6 +4,7 @@ import Palette from './Palette.jsx';
 import House from '../../assets/images/house.png';
 import Park from '../../assets/images/park.png';
 import School from '../../assets/images/school.png';
+import Factor from '../../assets/images/factory.png';
 import '../../styles/grid.css';
 import StatsBar from './StatsBar.jsx';
 
@@ -45,6 +46,7 @@ function Grid({levelInfo}) {
             case 'house': return House;
             case 'park': return Park;
             case 'school': return School;
+            case 'factory': return Factor;
             default: return House;
         }
     };
@@ -94,6 +96,7 @@ function Grid({levelInfo}) {
     };
 
     // derive stats from placed tiles and level definitions
+    // eslint-disable-next-line react-hooks/preserve-manual-memoization
     const stats = React.useMemo(() => {
         let happiness = BASE_STATS.happiness ?? 40;
         let environment = BASE_STATS.environment ?? 40;
@@ -110,7 +113,7 @@ function Grid({levelInfo}) {
         // happiness: only from parks/schools and only counts houses in their radius
         for (const t of tiles) {
             if (!t.type) continue;
-            if (t.type === 'park' || t.type === 'school') {
+            if (t.type === 'park' || t.type === 'school' || t.type === 'factory') {
                 const def = levelTiles.find((lt) => lt.type === t.type);
                 if (def && def.effect) {
                     const radius = RADIUS_MAP[t.type] ?? 0;
@@ -153,7 +156,7 @@ function Grid({levelInfo}) {
             if (!data) return;
             const payload = JSON.parse(data);
             const rType = payload.type;
-            if (rType === 'park' || rType === 'school') {
+            if (rType === 'park' || rType === 'school' || rType === 'factory') {
                 const radius = RADIUS_MAP[rType];
                 const ids = getAffectedHouseIds(tileEl.id, radius);
                 setHighlightedIds(ids);
@@ -172,7 +175,7 @@ function Grid({levelInfo}) {
             if (!data) return;
             const payload = JSON.parse(data);
             const rType = payload.type;
-            if (rType === 'park' || rType === 'school') {
+            if (rType === 'park' || rType === 'school' || rType === 'factory') {
                 const radius = RADIUS_MAP[rType];
                 const ids = getAffectedHouseIds(tile?.id, radius);
                 setHighlightedIds(ids);
@@ -267,7 +270,7 @@ function Grid({levelInfo}) {
             const type = tileEl.getAttribute('data-type');
 
             // if clicking on park/school on the grid, show effected houses
-            if (type === 'park' || type === 'school') {
+            if (type === 'park' || type === 'school' || type === 'factory') {
                 const radius = RADIUS_MAP[type];
                 // toggle if same center
                 if (highlightCenter === tileEl.id) {
